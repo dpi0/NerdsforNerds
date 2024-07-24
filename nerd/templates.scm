@@ -50,24 +50,24 @@
     `(html ,(html-head "NerdsforNerds")
            (body
              ,heading
-             (h1 "NerdsforNerds")
-             (p "NerdsforNerds is a privacy-respecting"
-                " front-end to GeeksforGeeks.")
-             (br)
-             (h2 "Usage")
-             (p "You can use NerdsforNerds by replacing "
-                (code "geeksforgeeks.org")
-                " with this website's domain")
-             (h3 "Example")
-             (pre (code
-                    ,(string-append
-                       "example"
-                       "-link")))
-             (p "becomes")
-             (pre (code
-                    ,(string-append
-                       "https://" host "/example"
-                       "-link")))
+             (article
+               (h1 "NerdsforNerds")
+               (p "NerdsforNerds is a privacy-respecting"
+                  " front-end to GeeksforGeeks.")
+               (h2 "Usage")
+               (p "You can use NerdsforNerds by replacing "
+                  (code "www.geeksforgeeks.org")
+                  " with this website's domain")
+               (h3 "Example")
+               (pre (code
+                      ,(string-append
+                         "https://www.geeksforgeeks.org/script-command-in-linux-w"
+                         "ith-examples/")))
+               (p "becomes")
+               (pre (code
+                      ,(string-append
+                         "https://" host "/script-command-in-"
+                         "linux-with-examples/"))))
              ,footer))))
 
 (define (article-template d)

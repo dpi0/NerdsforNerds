@@ -67,6 +67,12 @@ pre {
 	font-size: 14px;
 }
 
+code {
+	background-color: var(--pre-bg-color);
+	border-radius: 10px;
+	padding: 0px 6px 3px 6px;
+}
+
 article img {
 	display: block;
 	margin: auto;
@@ -100,4 +106,8 @@ blockquote {
 
 hr {
 	color: var(--border-color);
+}
+
+footer {
+	text-align: center;
 }
