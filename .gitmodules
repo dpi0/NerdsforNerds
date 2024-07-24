@@ -1,0 +1,3 @@
+[submodule "guile-libxml2"]
+	path = guile-libxml2
+	url = https://git.vern.cc/cobra/guile-libxml2
