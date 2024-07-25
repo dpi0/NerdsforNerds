@@ -33,6 +33,10 @@
   (define lst (list ""))
   (while (not (null-pointer? chld))
          (cond
+           ((and (equal? (name chld) "div")
+                 (equal? (name (attrs chld)) "id")
+                 (equal? (text (attrs chld)) "AP_G4GR_6"))
+            (break))
            ((or (equal? (name chld) "p")
                 (equal? (name chld) "blockquote")
                 (equal? (name chld) "ul")
@@ -41,6 +45,9 @@
                 (equal? (name chld) "table")
                 (equal? (name chld) "h2")
                 (equal? (name chld) "h3")
+                (equal? (name chld) "h4")
+                (equal? (name chld) "h5")
+                (equal? (name chld) "h6")
                 (and (equal? (name chld) "div")
                      (equal? (name (attrs chld)) "id")
                      (equal? (text (attrs chld)) "table_of_content")))
@@ -142,10 +149,14 @@
           d #f))))
   (define sidebar
     (list
-      (if (not (xpath-null? "//ul[@class=\"leftBarList\"]" d))
+      (if (and
+            (not (xpath-null? "//ul[@class=\"leftBarList\"]" d))
+            (not (null-pointer? (get-xpath-node "//ul[@class=\"leftBarList\"]"
+                                                d))))
         (string-replace-substring
           (string-replace-substring
             (dump-xpath-xml "//ul[@class=\"leftBarList\"]/div" d)
             "<div class=\"second\">" "")
-          "</div>" ""))))
+          "</div>" "")
+        "")))
   (append lst1 sidebar (cdr lst)))
