@@ -8,63 +8,13 @@
 	--border-color: #555555;
 }
 
-@media screen and (max-width:1500px) and (min-width:1280px) {
-	article {
-		max-width: calc(100% - 600px) !important;
-		min-width: calc(100% - 600px) !important;
-	}
-
-	aside {
-		max-width: calc(300px - 1%) !important;
-		min-width: calc(300px - 1%) !important;
-	}
-}
-
-@media (min-width: 1092px) and (max-width: 1225px) {
-	article {
-		min-width: 50%;
-	}
-}
-
-@media (max-width: 991px) {
-	article {
-		max-width: 100% !important;
-	}
-
-	aside {
-		max-width: 100% !important;
-		min-width: 100% !important;
-	}
-
-	aside ul {
-		display: none !important;
-	}
-
-	label {
-		position: relative !important;
-		display: block !important;
-		cursor: pointer !important;
-	}
-
-	input:checked~ul {
-		display: block !important;
-		background-color: var(--bg-color);
-	}
-}
 
 input, label {
 	display: none;
 }
 
-@media (min-width: 1700px) {
-	article {
-		max-width: 1047px !important;
-		min-width: 1047px !important;
-	}
-	aside {
-		max-width: 325px !important;
-		min-width: 325px !important;
-	}
+label svg {
+	color: var(--text-color);
 }
 
 body {
@@ -89,7 +39,7 @@ h1 {
 	margin: 0;
 }
 
-aside {
+aside.left {
 	font-size: 14px;
 	max-width: calc(8.75% + 160px);
 	min-width: calc(8.75% + 160px);
@@ -99,14 +49,14 @@ aside {
 	position: fixed !important;
 }
 
-aside>ul {
+aside.left > ul {
 	display: flex;
 	flex-direction: column;
 	list-style: none;
 	padding: 0 10px 10px 10px;
 }
 
-aside>ul li a {
+aside.left > ul li a {
 	padding: 10px;
 	width: calc(100% - 20px);
 	color: var(--text-color);
@@ -114,13 +64,13 @@ aside>ul li a {
 	display: inline-block;
 }
 
-aside ul li:hover a {
+aside.left ul li:hover a {
 	font-weight: 600;
 	background-color: var(--pre-bg-color);
 	border-radius: 10px;
 }
 
-aside ul li.currentpage a {
+aside.left ul li.currentpage a {
 	color: var(--accent-color);
 	text-decoration: none;
 }
@@ -189,4 +139,80 @@ hr {
 
 footer {
 	text-align: center;
+}
+
+
+
+
+@media (max-width: 991px) {
+	h1 {
+		margin-left: 3em;
+	}
+
+	article {
+		max-width: 95%;
+	}
+
+	aside.left {
+		max-width: 100%;
+		width: 0;
+		height: 0;
+	}
+
+	aside.left ul {
+		display: none;
+	}
+
+	label {
+		position: fixed;
+		display: block;
+		cursor: pointer;
+		width: 5em;
+		height: 5em;
+		background-color: #6666667f;
+		border-radius: 10px;
+		margin-top: 0.83em;
+		margin-left: 0.5em;
+	}
+
+	input:checked + aside.left > ul {
+		display: block;
+		background-color: var(--bg-color);
+		padding-top: 5.2em;
+	}
+
+	input:checked + aside.left {
+		width: 100vw;
+		height: 100vh;
+	}
+}
+
+@media screen and (max-width:1500px) and (min-width:1280px) {
+	article {
+		max-width: calc(100% - 600px);
+		min-width: calc(100% - 600px);
+	}
+
+	aside.left {
+		max-width: calc(300px - 1%);
+		min-width: calc(300px - 1%);
+	}
+}
+
+@media (min-width: 1092px) and (max-width: 1225px) {
+	article {
+		min-width: 50%;
+	}
+}
+
+@media (min-width: 1700px) {
+	article {
+		max-width: 1047px;
+		min-width: 1047px;
+	}
+	aside.left {
+		right: calc(50% + 1047px * 0.5);
+		max-width: 325px;
+		min-width: 325px;
+	}
 }

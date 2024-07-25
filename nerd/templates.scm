@@ -81,14 +81,32 @@
 
 (define (article->sxml article)
   `(div
-     (aside
-       (input (@ (id "yuri")
-                 (type "checkbox")
-                 (name "yuri")))
-       (label (@ (for "yuri")) "yuri")
-       (ul ,(html->shtml (string-replace-substring
-                           (caddr article)
-                           "https://www.geeksforgeeks.org" ""))))
+     (input (@ (id "yuri")
+               (type "checkbox")
+               (name "girls,,,")))
+     (aside (@ (class "left"))
+            (label (@ (for "yuri")) (svg
+                                      (@ (xmlns "http://www.w3.org/2000/svg")
+                                         (fill "#ffffff")
+                                         (width "5em")
+                                         (height "5em")
+                                         (viewbox "-2.5 0 19 19"))
+                                      (path
+                                        (@ (d ,(string-append
+                                                 "M.789 4.836a1.03 1.03 0 0 1 1"
+                                                 ".03-1.029h10.363a1.03 1.03 0 "
+                                                 "1 1 0 2.059H1.818A1.03 1.03 0"
+                                                 " 0 1 .79 4.836zm12.422 4.347a"
+                                                 "1.03 1.03 0 0 1-1.03 1.029H1."
+                                                 "819a1.03 1.03 0 0 1 0-2.059h1"
+                                                 "0.364a1.03 1.03 0 0 1 1.029 1"
+                                                 ".03zm0 4.345a1.03 1.03 0 0 1-"
+                                                 "1.03 1.03H1.819a1.03 1.03 0 1"
+                                                 " 1 0-2.059h10.364a1.03 1.03 0"
+                                                 " 0 1 1.029 1.03z"))))))
+            (ul ,(html->shtml (string-replace-substring
+                                (caddr article)
+                                "https://www.geeksforgeeks.org" ""))))
      (article
        (h1 ,(car article))
        (h4 "Last updated: " ,(cadr article))
