@@ -61,8 +61,8 @@
                (h3 "Example")
                (pre (code
                       ,(string-append
-                         "https://www.geeksforgeeks.org/script-command-in-linux-w"
-                         "ith-examples/")))
+                         "https://www.geeksforgeeks.org/script-command-in-linux"
+                         "-with-examples/")))
                (p "becomes")
                (pre (code
                       ,(string-append
@@ -80,23 +80,37 @@
                ,footer)))))
 
 (define (article->sxml article)
-  `(article
-     (h1 ,(car article))
-     (h4 "Last updated: " ,(cadr article))
-     (hr)
-     (div
-       ,(map (lambda (p)
-               (if (equal? (cdr p) "")
-                 (html->shtml (string-replace-substring
-                                (car p) "https://www.geeksforgeeks.org" ""))
-                 `(div ,(html->shtml
-                          (string-replace-substring
-                            (car p) "https://www.geeksforgeeks.org" ""))
-                       (code ,(html->shtml
+  `(div
+     (aside
+       (input (@ (id "yuri")
+                 (type "checkbox")
+                 (name "yuri")))
+       (label (@ (for "yuri")) "yuri")
+       (ul ,(html->shtml (string-replace-substring
+                           (caddr article)
+                           "https://www.geeksforgeeks.org" ""))))
+     (article
+       (h1 ,(car article))
+       (h4 "Last updated: " ,(cadr article))
+       (hr)
+       (main
+         ,(map (lambda (p)
+                 (if (equal? (cdr p) "")
+                   (html->shtml (string-replace-substring
+                                  (car p)
+                                  "https://www.geeksforgeeks.org" ""))
+                   `(div ,(html->shtml
+                            (string-replace-substring
+                              (car p)
+                              "https://www.geeksforgeeks.org" ""))
+                         (pre
+                           (code
+                             ,(html->shtml
                                 (string-replace-substring
                                   (cdr p)
-                                  "https://www.geeksforgeeks.org" ""))))))
-             (cddr article)))))
+                                  "https://www.geeksforgeeks.org" "")))))))
+               (cdddr article))))))
+
 
 (define (error-template code)
   (shtml->html

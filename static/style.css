@@ -10,8 +10,13 @@
 
 @media screen and (max-width:1500px) and (min-width:1280px) {
 	article {
-		max-width: calc(100% - 600px);
-		min-width: calc(100% - 600px);
+		max-width: calc(100% - 600px) !important;
+		min-width: calc(100% - 600px) !important;
+	}
+
+	aside {
+		max-width: calc(300px - 1%) !important;
+		min-width: calc(300px - 1%) !important;
 	}
 }
 
@@ -25,6 +30,30 @@
 	article {
 		max-width: 100% !important;
 	}
+
+	aside {
+		max-width: 100% !important;
+		min-width: 100% !important;
+	}
+
+	aside ul {
+		display: none !important;
+	}
+
+	label {
+		position: relative !important;
+		display: block !important;
+		cursor: pointer !important;
+	}
+
+	input:checked~ul {
+		display: block !important;
+		background-color: var(--bg-color);
+	}
+}
+
+input, label {
+	display: none;
 }
 
 @media (min-width: 1700px) {
@@ -32,15 +61,19 @@
 		max-width: 1047px !important;
 		min-width: 1047px !important;
 	}
+	aside {
+		max-width: 325px !important;
+		min-width: 325px !important;
+	}
 }
 
 body {
-	font-family: DejaVu Sans, sans-serif;
+	font-family: Source Sans 3, sans-serif;
 	font-size: 18px;
 	line-height: 1.6;
-	letter-spacing: 0.015rem;
 	color: var(--text-color);
 	background-color: var(--bg-color);
+	margin: 0;
 }
 
 article {
@@ -48,6 +81,47 @@ article {
 	min-width: calc(80.5% - 320px);
 	margin-left: auto;
 	margin-right: auto;
+	letter-spacing: 0.015rem;
+}
+
+h1 {
+	margin: 0;
+}
+
+aside {
+	font-size: 14px;
+	max-width: calc(8.75% + 160px);
+	min-width: calc(8.75% + 160px);
+	line-height: 21px;
+	overflow: auto;
+	height: 100vh;
+	position: fixed !important;
+}
+
+aside>ul {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0 10px 10px 10px;
+}
+
+aside>ul li a {
+	padding: 10px;
+	width: calc(100% - 20px);
+	color: var(--text-color);
+	text-decoration: none;
+	display: inline-block;
+}
+
+aside ul li:hover a {
+	font-weight: 600;
+	background-color: var(--pre-bg-color);
+	border-radius: 10px;
+}
+
+aside ul li.currentpage a {
+	color: var(--accent-color);
+	text-decoration: none;
 }
 
 a {
@@ -71,6 +145,10 @@ code {
 	background-color: var(--pre-bg-color);
 	border-radius: 10px;
 	padding: 0px 6px 3px 6px;
+}
+
+pre code {
+	padding: 0;
 }
 
 article img {

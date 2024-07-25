@@ -111,7 +111,7 @@
                                   chld))
                           'pre "" 'post)
                         (regexp-substitute/global
-                          #f "</?span[^>]*>"
+                          #f "</?(span|pre)[^>]*>"
                           (dump-xml (get-xpath-node
                                       (string-append "//*[name(.) ='']["
                                                      (number->string (1+ i))
@@ -125,13 +125,10 @@
               lst
               (list (cons
                       (text (child1 chld 0))
-                      (string-append
-                        "<pre>"
-                        (regexp-substitute/global
-                          #f "</?(code|div)[^>]*>"
-                          (dump-xml (get-xpath-node "//tbody/tr/td/div" chld))
-                          'pre "" 'post)
-                        "</pre>"))))))
+                      (regexp-substitute/global
+                        #f "(<div class=\"container\">\n|</?(code|div)[^>]*>)"
+                        (dump-xml (get-xpath-node "//tbody/tr/td/div" chld))
+                        'pre "" 'post))))))
          (set! chld (next chld 0)))
   (define lst1
     (let ((pref "//div[@class=\"a-wrapper\"]/article"))
@@ -143,4 +140,12 @@
           (string-append 
             pref "/div[1]/div[1]/div[2]/span[2]/text()")
           d #f))))
-  (append lst1 (cdr lst)))
+  (define sidebar
+    (list
+      (if (not (xpath-null? "//ul[@class=\"leftBarList\"]" d))
+        (string-replace-substring
+          (string-replace-substring
+            (dump-xpath-xml "//ul[@class=\"leftBarList\"]/div" d)
+            "<div class=\"second\">" "")
+          "</div>" ""))))
+  (append lst1 sidebar (cdr lst)))
