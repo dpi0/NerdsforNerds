@@ -39,6 +39,10 @@ h1 {
 	margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+}
+
 aside.left {
 	font-size: 14px;
 	max-width: calc(8.75% + 160px);
