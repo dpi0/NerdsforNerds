@@ -37,6 +37,15 @@
                  (equal? (name (attrs chld)) "id")
                  (equal? (text (attrs chld)) "AP_G4GR_6"))
             (break))
+           ((not
+              (xpath-null?
+                "/div[@style=\"text-align:justify;\"][@alignment=\"justify\"]"
+                chld))
+            (append!
+              lst
+              (list (cons
+                      (dump-xml chld)
+                      ""))))
            ((or (equal? (name chld) "p")
                 (equal? (name chld) "blockquote")
                 (equal? (name chld) "ul")

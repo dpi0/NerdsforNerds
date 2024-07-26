@@ -49,14 +49,14 @@ aside.left {
 	position: fixed !important;
 }
 
-aside.left > ul {
+aside.left ul {
 	display: flex;
 	flex-direction: column;
 	list-style: none;
 	padding: 0 10px 10px 10px;
 }
 
-aside.left > ul li a {
+aside.left ul li a {
 	padding: 10px;
 	width: calc(100% - 20px);
 	color: var(--text-color);
@@ -175,10 +175,12 @@ footer {
 		margin-left: 0.5em;
 	}
 
-	input:checked + aside.left > ul {
+	input:checked + aside.left ul {
 		display: block;
 		background-color: var(--bg-color);
-		padding-top: 5.2em;
+		font-size: 175%;
+		line-height: 175%;
+		padding-top: 2.83em;
 	}
 
 	input:checked + aside.left {
@@ -215,4 +217,8 @@ footer {
 		max-width: 325px;
 		min-width: 325px;
 	}
+}
+
+div[id^="GFG"] {
+	display: none !important;
 }
