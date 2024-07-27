@@ -1,2 +1,11 @@
 [
+    {
+        "clearnet": "https://nn.vern.cc",
+        "tor": "http://nn.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion",
+        "i2p": "http://verndxuxy2gxwbghph2exffcx32d3estsfy4k7tkyrvhhac4ai4a.b32.i2p",
+        "patches": null,
+        "country": "US",
+        "owner_name": "~vern",
+        "owner_website": "https://vern.cc"
+    }
 ]
