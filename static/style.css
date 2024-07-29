@@ -79,6 +79,10 @@ aside.left ul li.currentpage a {
 	text-decoration: none;
 }
 
+aside.left h2 {
+	font-size: 1.3em;
+}
+
 a {
 	color: var(--accent-color);
 	text-decoration: underline;

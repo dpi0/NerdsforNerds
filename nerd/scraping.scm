@@ -86,7 +86,7 @@
            ((and (equal? (name chld) "div")
                  (not (null-pointer? (next (attrs chld) 0)))
                  (equal? (name (next (attrs chld) 0)) "class")
-                 (equal? (text (next (attrs chld) 0)) "wp-caption alignnone"))
+                 (string-contains (text (next (attrs chld) 0)) "wp-caption"))
             (append!
               lst
               (list (cons
@@ -164,8 +164,10 @@
                                                 d))))
         (string-replace-substring
           (string-replace-substring
-            (dump-xpath-xml "//ul[@class=\"leftBarList\"]/div" d)
-            "<div class=\"second\">" "")
-          "</div>" "")
+            (string-replace-substring
+              (dump-xpath-xml "//ul[@class=\"leftBarList\"]/div" d)
+              "<div class=\"second\">" "")
+            "</div>" "")
+          " style=\"display: none;\"" "")
         "")))
   (append lst1 sidebar (cdr lst)))
