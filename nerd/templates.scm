@@ -36,14 +36,14 @@
 (define heading
   `(header))
 
-(define footer
-  `(footer
-     (p (a (@ (href "https://git.vern.cc/cobra/NerdsforNerds"))
-           "Source Code"))
-     ,(if (getenv "PATCHES_URL")
-        `(p (a (@ (href ,(getenv "PATCHES_URL")))
-               "Patches"))
-        `())))
+(define source
+  `(aside (@ (class "right"))
+          (p (a (@ (href "https://git.vern.cc/cobra/NerdsforNerds"))
+                "Source Code"))
+          ,(if (getenv "PATCHES_URL")
+             `(p (a (@ (href ,(getenv "PATCHES_URL")))
+                    "Patches"))
+             `())))
 
 (define (index-template host)
   (shtml->html
@@ -68,7 +68,7 @@
                       ,(string-append
                          "https://" host "/script-command-in-"
                          "linux-with-examples/"))))
-             ,footer))))
+             ,source))))
 
 (define (article-template d)
   (let ((article (get-article d)))
@@ -77,7 +77,7 @@
              (body
                ,heading
                ,(article->sxml article)
-               ,footer)))))
+               ,source)))))
 
 (define (article->sxml article)
   `(div
@@ -139,4 +139,4 @@
            (body
              ,heading
              (h1 ,(number->string code))
-             ,footer))))
+             ,source))))
