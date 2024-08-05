@@ -37,15 +37,6 @@
                  (equal? (name (attrs chld)) "id")
                  (equal? (text (attrs chld)) "AP_G4GR_6"))
             (break))
-           ((not
-              (xpath-null?
-                "/div[@style=\"text-align:justify;\"][@alignment=\"justify\"]"
-                chld))
-            (append!
-              lst
-              (list (cons
-                      (dump-xml chld)
-                      ""))))
            ((or (equal? (name chld) "p")
                 (equal? (name chld) "blockquote")
                 (equal? (name chld) "ul")
@@ -136,7 +127,8 @@
                           'pre "" 'post))))))
            ((and (equal? (name chld) "div")
                  (equal? (name (attrs chld)) "class")
-                 (equal? (text (attrs chld)) "responsive-tabs"))
+                 (or (equal? (text (attrs chld)) "responsive-tabs")
+                     (equal? (text (attrs chld)) "code-block")))
             (append!
               lst
               (list (cons
@@ -144,7 +136,18 @@
                       (regexp-substitute/global
                         #f "(<div class=\"container\">\n|</?(code|div)[^>]*>)"
                         (dump-xml (get-xpath-node "//tbody/tr/td/div" chld))
-                        'pre "" 'post))))))
+                        'pre "" 'post)))))
+           ((and (not (null-pointer? (attrs chld)))
+                 (not (null-pointer? (next (attrs chld) 0)))
+                 (equal? (name (attrs chld)) "style")
+                 (equal? (name (next (attrs chld) 0)) "alignment")
+                 (equal? (text (attrs chld)) "text-align:justify;")
+                 (equal? (text (next (attrs chld) 0)) "justify"))
+            (append!
+              lst
+              (list (cons
+                      (dump-xml chld)
+                      "")))))
          (set! chld (next chld 0)))
   (define lst1
     (let ((pref "//div[@class=\"a-wrapper\"]/article"))
