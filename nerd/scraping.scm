@@ -1,4 +1,4 @@
-;; Copyright (C) 2024 Skylar Widulski <cobra@vern.cc>
+;; Copyright (C) 2024 Skylar Astaroth <cobra@vern.cc>
 ;;
 ;; This file is part of NerdsforNerds
 ;;
