@@ -51,8 +51,7 @@
 
 (define (generic-page procedure path)
   (let ((resp "")
-        (body "")
-        (ret ""))
+        (body ""))
     (receive (_resp _body)
              (http-request (string-append "https://www.geeksforgeeks.org" path))
              (set! resp _resp)
