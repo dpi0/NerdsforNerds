@@ -29,5 +29,10 @@ The following are optional.
 
 `PORT` - What port to run on (default `8006`).
 
+## TODO
+- Category pages
+- Remove infinite `span` elements, we don't have syntax highlighting
+- Preferrably remove made up gfg elements
+
 ## Notes
 When using a service manager (e.g. systemd), make sure the stop signal is set to SIGINT, or 2. This will prevent EADDRINUSE.
