@@ -16,21 +16,18 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (nerd pages)
-  #:use-module (nerd scraping)
   #:use-module (nerd templates)
-  #:use-module (libxml2)
+  #:use-module (htmlprag)
   #:use-module (web response)
   #:use-module (web client)
   #:use-module (web http)
   #:use-module (web uri)
   #:use-module (ice-9 receive)
-  #:use-module (system foreign)
+  #:use-module (ice-9 string-fun)
   #:export (error-page
             index-page
             article-page
             proxy-page))
-
-(define default-domain "www.geeksforgeeks.org")
 
 (define good-response
   (build-response #:code 200
@@ -49,31 +46,38 @@
   (display ";\tHandler: error-page") (newline)
   (values (build-response
             #:code code
-            #:headers `((content-type . (text/html)))) (error-template code)))
+            #:headers `((content-type . (text/html))))
+          (shtml->html (error-template code))))
 
 (define (generic-page procedure path)
   (let ((resp "")
         (body "")
         (ret ""))
     (receive (_resp _body)
-             (http-request (string-append "https://" default-domain path))
+             (http-request (string-append "https://www.geeksforgeeks.org" path))
              (set! resp _resp)
              (set! body _body))
     (display (string-append ";\tStatus: "
                             (number->string (response-code resp))))
     (newline)
     (cond ((equal? (response-code resp) 200)
-           (let ((d (gumbo-libxml-parse (string->pointer body))))
-             (set! ret (procedure d))
-             (xml-free-doc d)
-             (values good-response ret)))
+           (let ((doc (html->sxml-0nf body #:strict? #t)))
+             (values good-response
+                     (string-replace-substring
+                       (string-replace-substring
+                         (string-replace-substring
+                           (shtml->html (procedure doc))
+                           "&amp;" "&")
+                         "https://media.geeksforgeeks.org/"
+                         "/proxy?url=https://media.geeksforgeeks.org/")
+                       "https://www.geeksforgeeks.org" ""))))
           ((and (>= (response-code resp) 300) (<= (response-code resp) 399))
            (redirect resp (response-code resp)))
           (else (error-page (response-code resp))))))
 
 (define (index-page host)
   (display ";\tHandler: index-page") (newline)
-  (values good-response (index-template host)))
+  (values good-response (shtml->html (index-template host))))
 
 (define (article-page path)
   (display ";\tHandler: article-page")

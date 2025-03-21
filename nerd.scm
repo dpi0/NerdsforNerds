@@ -16,14 +16,11 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 (define-module (nerd)
-  #:use-module (nerd templates)
   #:use-module (nerd pages)
-  #:use-module (nerd scraping)
   #:use-module (web server)
   #:use-module (web uri)
   #:use-module (web request)
   #:use-module (web http)
-  #:use-module (ice-9 suspendable-ports)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 binary-ports))
 
@@ -60,8 +57,6 @@
       ((equal? path "/proxy")
        (proxy-page (uri-query uri)))
       (else (article-page path)))))
-
-(install-suspendable-ports!)
 
 (let ((port (if (getenv "PORT")
               (string->number (getenv "PORT"))

@@ -56,6 +56,11 @@ aside.left {
 	height: 100vh;
 }
 
+aside.left a p {
+	padding-left: 1em;
+	margin-right: 1em;
+}
+
 aside ul {
 	display: flex;
 	flex-direction: column;
@@ -198,17 +203,22 @@ hr {
 		margin-left: 0.5em;
 	}
 
-	input:checked + aside.left ul {
-		display: block;
-		background-color: var(--bg-color);
+	input:checked + aside.left a p {
 		font-size: 175%;
 		line-height: 175%;
+	}
+
+	input:checked + aside.left ul {
 		padding-top: 2.83em;
+		display: block;
+		font-size: 175%;
+		line-height: 175%;
 	}
 
 	input:checked + aside.left {
-		width: 100vw;
+		width: 50vw;
 		height: 100vh;
+		background-color: var(--bg-color);
 	}
 }
 
@@ -247,6 +257,6 @@ hr {
 	}
 }
 
-div[id^="GFG"] {
-	display: none !important;
-}
+gfg-tab {
+	display: none;
+}	
