@@ -13,8 +13,6 @@ This program is written in Guile Scheme.
 
 You will need need `guile`, `guile-gnutls`, and `guile-lib`.
 
-You will also need a POSIX regex implementation available, which shouldn't be a problem on most OSes.
-
 ## Running
 0. Install the dependencies
 1. Clone the repository using `git clone https://git.vern.cc/cobra/NerdsforNerds`
