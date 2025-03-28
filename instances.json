@@ -7,5 +7,13 @@
         "country": "US",
         "owner_name": "~vern",
         "owner_website": "https://vern.cc"
+    },
+    {
+        "clearnet": "https://nerdsfornerds.catsarch.com",
+        "tor": "http://nerdsfornerds.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion",
+        "i2p": "http://j7eve6ztuhcnntsonv6xcmhgwdhlw5py6iuurbtjilluu3l7h2ia.b32.i2p",
+        "country": "US",
+        "owner_name": "Butter Cat",
+        "owner_website": "https://catsarch.com"
     }
 ]
