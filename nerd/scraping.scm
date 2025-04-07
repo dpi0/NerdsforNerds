@@ -27,7 +27,7 @@
     ((sxpath '(html body div div div div a @ href *text*)) d)
     ((sxpath '(html body div div div div a div span *text*)) d)
     ((sxpath '(html body div div div div a div div *text*)) d)
-    ((sxpath '(html body div ul)) d)
+    ((sxpath '(html body div div ul)) d)
     ((filter
        (lambda (nodeset)
          (equal?
